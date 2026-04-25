@@ -1,0 +1,122 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+      - 'examples/**'
+      - 'tests/e2e/**'
+      - '.github/workflows/e2e-tests.yaml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+      - 'examples/**'
+      - 'tests/e2e/**'
+      - '.github/workflows/e2e-tests.yaml'
+  workflow_dispatch:
+
+env:
+  W3PILOT_HEADLESS: "1"
+  W3PILOT_DEBUG: "0"
+
+jobs:
+  build:
+    name: Build Components
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build All Packages
+        run: pnpm build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-bundles
+          path: |
+            packages/*/dist/*.min.js
+            examples/
+          retention-days: 1
+
+  e2e-tests:
+    name: E2E Browser Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-bundles
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+          cache-dependency-path: tests/e2e/go.sum
+
+      - name: Install Clicker Binary
+        run: |
+          git clone --depth 1 https://github.com/ArcLCdot/vibium.git /tmp/vibium
+          cd /tmp/vibium/clicker
+          # Patch for CI environments (no sandbox)
+          sed -i 's/return nil/return []string{"--no-sandbox"}/' internal/browser/launcher_unix.go
+          cd cmd/clicker
+          touch SKILL.md
+          go build -o $HOME/go/bin/clicker .
+          rm -rf /tmp/vibium
+
+      - name: Cache Browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/vibium
+          key: vibium-browser-${{ runner.os }}-v1
+
+      - name: Install Chrome for Testing
+        run: |
+          clicker install
+          clicker paths
+
+      - name: Start Local Server
+        run: |
+          npm install -g serve
+          serve examples -p 3000 &
+          sleep 3
+          curl -s http://localhost:3000 > /dev/null || exit 1
+
+      - name: Run E2E Tests
+        working-directory: tests/e2e
+        run: |
+          go mod tidy
+          go test -tags=integration -v -timeout=5m ./...
+
+      - name: Upload Screenshots on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-screenshots
+          path: |
+            tests/e2e/*.png
+            screenshots/
+          retention-days: 7

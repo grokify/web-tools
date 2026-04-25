@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build & Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Typecheck All Packages
+        run: pnpm typecheck
+
+      - name: Build All Packages
+        run: pnpm build
+
+      - name: Verify Build Outputs
+        run: |
+          echo "Checking build outputs..."
+          ls -la packages/markdown-editor/dist/
+          ls -la packages/jwt-editor/dist/
+          ls -la packages/coordinate-picker/dist/
+
+          # Verify all expected files exist
+          test -f packages/markdown-editor/dist/markdown-editor.min.js
+          test -f packages/jwt-editor/dist/jwt-editor.min.js
+          test -f packages/coordinate-picker/dist/coordinate-picker.min.js
+
+          echo "All build outputs verified!"
