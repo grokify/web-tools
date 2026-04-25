@@ -1,0 +1,31 @@
+{
+  "name": "web-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for browser-based developer tools built with Lit Web Components",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "keywords": [
+    "web-components",
+    "lit",
+    "developer-tools",
+    "monorepo"
+  ],
+  "author": "John Wang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grokify/web-tools.git"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.0"
+}
