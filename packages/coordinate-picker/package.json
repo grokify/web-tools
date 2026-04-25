@@ -1,0 +1,49 @@
+{
+  "name": "@grokify/coordinate-picker",
+  "version": "0.1.0",
+  "description": "Web component for picking coordinates from images to create SVG polygons - built with Lit Web Components",
+  "type": "module",
+  "main": "dist/coordinate-picker.umd.js",
+  "module": "dist/coordinate-picker.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/coordinate-picker.es.js",
+      "require": "./dist/coordinate-picker.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --outDir dist",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  },
+  "keywords": [
+    "svg",
+    "coordinate",
+    "picker",
+    "polygon",
+    "image",
+    "web-component",
+    "lit"
+  ],
+  "author": "John Wang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grokify/web-tools.git",
+    "directory": "packages/coordinate-picker"
+  }
+}
