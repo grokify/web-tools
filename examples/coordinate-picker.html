@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinate Picker - Example</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #1a1a2e;
+      min-height: 100vh;
+    }
+    .controls {
+      padding: 16px;
+      background: #2a2a4a;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      background: #4a4a8a;
+      color: #fff;
+    }
+    button:hover { background: #5a5a9a; }
+    coordinate-picker {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button onclick="toggleTheme()">Toggle Theme</button>
+    <span id="themeLabel" style="color: #94a3b8; font-size: 14px;">Theme: dark</span>
+  </div>
+
+  <coordinate-picker id="picker" theme="dark"></coordinate-picker>
+
+  <script src="../packages/coordinate-picker/dist/coordinate-picker.min.js"></script>
+  <script>
+    function toggleTheme() {
+      const picker = document.getElementById('picker');
+      const newTheme = picker.theme === 'dark' ? 'light' : 'dark';
+      picker.theme = newTheme;
+      document.getElementById('themeLabel').textContent = `Theme: ${newTheme}`;
+      document.body.style.background = newTheme === 'dark' ? '#1a1a2e' : '#f8fafc';
+    }
+
+    // Listen for SVG generation events
+    document.getElementById('picker').addEventListener('svg-generated', (e) => {
+      console.log('SVG generated:', e.detail.svg);
+    });
+  </script>
+</body>
+</html>
