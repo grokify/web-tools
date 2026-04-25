@@ -1,0 +1,59 @@
+site_name: web-tools
+site_description: Browser-based developer tools built with Lit Web Components
+site_url: https://grokify.github.io/web-tools/
+repo_url: https://github.com/grokify/web-tools
+repo_name: grokify/web-tools
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tabs
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+extra_css:
+  - stylesheets/custom.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Tools:
+    - Markdown Editor: tools/markdown-editor.md
+    - JWT Editor: tools/jwt-editor.md
+    - Coordinate Picker: tools/coordinate-picker.md
+  - Development:
+    - Theming: development/theming.md
+    - Testing: development/testing.md
+    - Contributing: development/contributing.md
+  - Changelog: changelog.md
