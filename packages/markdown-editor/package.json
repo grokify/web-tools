@@ -1,0 +1,64 @@
+{
+  "name": "@grokify/markdown-editor",
+  "version": "0.1.0",
+  "description": "Client-side Markdown editor with live preview and PDF/DOCX export - built with Lit Web Components",
+  "type": "module",
+  "main": "dist/markdown-editor.umd.js",
+  "module": "dist/markdown-editor.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/markdown-editor.es.js",
+      "require": "./dist/markdown-editor.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --outDir dist",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "lit": "^3.2.0",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  },
+  "peerDependencies": {
+    "html2pdf.js": "^0.10.2",
+    "docx": "^9.0.0"
+  },
+  "peerDependenciesMeta": {
+    "html2pdf.js": {
+      "optional": true
+    },
+    "docx": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "markdown",
+    "editor",
+    "preview",
+    "pdf",
+    "docx",
+    "export",
+    "lit",
+    "web-components"
+  ],
+  "author": "John Wang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grokify/web-tools.git",
+    "directory": "packages/markdown-editor"
+  }
+}
