@@ -1,0 +1,42 @@
+{
+  "irVersion": "1.0",
+  "project": "web-tools",
+  "repository": "https://github.com/grokify/web-tools",
+  "versioning": "semver",
+  "commitConvention": "conventional",
+  "maintainers": ["grokify"],
+  "releases": [
+    {
+      "version": "v0.1.0",
+      "date": "2026-05-25",
+      "highlights": [
+        { "description": "Initial release of web-tools monorepo with browser-based developer tools built as Lit Web Components" },
+        { "description": "Three standalone tools: Markdown Editor, JWT Editor, and Coordinate Picker" },
+        { "description": "Reusable site-nav component package for navigation, headers, badges, and theme toggle" }
+      ],
+      "added": [
+        { "description": "Monorepo structure with pnpm workspaces", "commit": "413bd09" },
+        { "description": "Markdown Editor: Live preview with GitHub Flavored Markdown, syntax highlighting, and export options", "commit": "50d8cda" },
+        { "description": "JWT Editor: Decode, edit, and re-sign JWTs with support for HS256/HS384/HS512 algorithms", "commit": "efb0ed1" },
+        { "description": "Coordinate Picker: Interactive map tool for selecting and managing geographic coordinates", "commit": "404661a" },
+        { "description": "site-nav package with wt-navbar, wt-header, wt-badge, wt-theme-toggle, wt-mega-menu, wt-mobile-menu components", "commit": "4d37c9d" }
+      ],
+      "documentation": [
+        { "description": "Example HTML pages for each tool", "commit": "f1428b8" },
+        { "description": "Planning and project documentation", "commit": "e5334de" },
+        { "description": "MkDocs documentation site with Material theme", "commit": "c2ad5a6" },
+        { "description": "Guide for cleaning up coordinates in Coordinate Picker", "commit": "872b0d4" },
+        { "description": "site-nav component documentation with usage examples", "commit": "47e1358" },
+        { "description": "Local development guide for working with unpublished packages", "commit": "172a421" }
+      ],
+      "tests": [
+        { "description": "w3pilot E2E testing infrastructure", "commit": "ce67df2" }
+      ],
+      "build": [
+        { "description": "GitHub Actions workflows for CI", "commit": "5b186db" },
+        { "description": "Gitignore for generated site/ directory", "commit": "f8c3f4d" },
+        { "description": "Gitignore for package-lock.json in library packages", "commit": "521abd4" }
+      ]
+    }
+  ]
+}
