@@ -6,7 +6,17 @@ Browser-based developer tools built with [Lit](https://lit.dev/) Web Components.
 
 web-tools is a monorepo containing standalone, themeable web components for common developer tasks. Each tool works offline after initial load and can be embedded in any web page.
 
-## Available Tools
+## Components
+
+Reusable UI components for building web applications.
+
+| Component | Description |
+|-----------|-------------|
+| [site-nav](components/site-nav.md) | Navigation components: navbar, header, badges, theme toggle |
+
+## Tools
+
+Standalone developer tools.
 
 | Tool | Description | Size |
 |------|-------------|------|
@@ -48,5 +58,6 @@ import '@grokify/jwt-editor';
 
 - [GitHub Repository](https://github.com/grokify/web-tools)
 - [Getting Started](getting-started.md)
+- [Local Development](development/local-development.md)
 - [Theming Guide](development/theming.md)
 - [Contributing](development/contributing.md)

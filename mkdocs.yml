@@ -48,11 +48,14 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  - Components:
+    - site-nav: components/site-nav.md
   - Tools:
     - Markdown Editor: tools/markdown-editor.md
     - JWT Editor: tools/jwt-editor.md
     - Coordinate Picker: tools/coordinate-picker.md
   - Development:
+    - Local Development: development/local-development.md
     - Theming: development/theming.md
     - Testing: development/testing.md
     - Contributing: development/contributing.md
