@@ -1,0 +1,47 @@
+{
+  "name": "@grokify/site-nav",
+  "version": "0.1.0",
+  "description": "Reusable site navigation components - tab nav, header, badges - built with Lit Web Components",
+  "type": "module",
+  "main": "dist/site-nav.umd.js",
+  "module": "dist/site-nav.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/site-nav.es.js",
+      "require": "./dist/site-nav.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --outDir dist",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  },
+  "keywords": [
+    "navigation",
+    "tabs",
+    "header",
+    "web-component",
+    "lit"
+  ],
+  "author": "John Wang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grokify/web-tools.git",
+    "directory": "packages/site-nav"
+  }
+}

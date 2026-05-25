@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Nav Components - Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Theme-aware body styling */
+    :root,
+    [theme="light"] {
+      --page-bg: #ffffff;
+      --page-text: #1e293b;
+      --section-bg: #f8fafc;
+      --section-border: #e2e8f0;
+      --label-color: #64748b;
+    }
+
+    [theme="dark"] {
+      --page-bg: #0f172a;
+      --page-text: #f1f5f9;
+      --section-bg: #1e293b;
+      --section-border: #475569;
+      --label-color: #64748b;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--page-bg);
+      color: var(--page-text);
+      min-height: 100vh;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    #main-content {
+      padding: 24px;
+    }
+    .demo-section {
+      margin-bottom: 48px;
+    }
+    .demo-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--label-color);
+      margin-bottom: 16px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .content-area {
+      margin-top: 24px;
+      padding: 24px;
+      background: var(--section-bg);
+      border: 1px solid var(--section-border);
+      border-radius: 8px;
+      min-height: 200px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--section-border);
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Demo (Full Width) -->
+  <wt-navbar id="navbar" theme="dark"></wt-navbar>
+
+  <main id="main-content">
+    <header class="page-header">
+      <h1 class="page-title">Site Nav Components</h1>
+      <wt-theme-toggle id="themeToggle" variant="segmented" show-label></wt-theme-toggle>
+    </header>
+
+    <div class="demo-section">
+      <div class="demo-title">Navbar Component (see above)</div>
+      <p style="color: var(--label-color); font-size: 0.875rem;">
+        The navbar at the top demonstrates: brand, mega menu, dropdown menus, action buttons, and mobile toggle.
+        Resize the window to see the mobile menu.
+      </p>
+    </div>
+
+  <div class="demo-section">
+    <div class="demo-title">Theme Toggle Component</div>
+    <div class="demo-row">
+      <wt-theme-toggle variant="icon"></wt-theme-toggle>
+      <wt-theme-toggle variant="segmented"></wt-theme-toggle>
+      <wt-theme-toggle variant="segmented" show-label></wt-theme-toggle>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-title">Header Component</div>
+    <wt-header
+      id="header"
+      title="Security Capability Stack"
+      version="1.0.0"
+      description="Enterprise security capabilities with maturity assessments"
+      theme="dark"
+    ></wt-header>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-title">Navigation Component</div>
+    <wt-nav
+      id="nav"
+      active="overview"
+      theme="dark"
+    ></wt-nav>
+    <div class="content-area" id="content">
+      <p>Select a tab above to see content change.</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-title">Filter Group Component</div>
+    <wt-filter-group
+      id="statusFilter"
+      name="status"
+      label="Status"
+      showActions
+      theme="dark"
+    ></wt-filter-group>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-title">Filter Group - Maturity Levels</div>
+    <wt-filter-group
+      id="maturityFilter"
+      name="maturity"
+      label="Maturity Level"
+      theme="dark"
+    ></wt-filter-group>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-title">Badge Components</div>
+    <div class="demo-row">
+      <wt-badge theme="dark">Default</wt-badge>
+      <wt-badge variant="primary" theme="dark">Primary</wt-badge>
+      <wt-badge variant="success" theme="dark">Success</wt-badge>
+      <wt-badge variant="warning" theme="dark">Warning</wt-badge>
+      <wt-badge variant="error" theme="dark">Error</wt-badge>
+      <wt-badge variant="info" theme="dark">Info</wt-badge>
+    </div>
+    <div class="demo-row" style="margin-top: 16px;">
+      <wt-badge variant="m1" theme="dark">M1</wt-badge>
+      <wt-badge variant="m2" theme="dark">M2</wt-badge>
+      <wt-badge variant="m3" theme="dark">M3</wt-badge>
+      <wt-badge variant="m4" theme="dark">M4</wt-badge>
+      <wt-badge variant="m5" theme="dark">M5</wt-badge>
+    </div>
+    <div class="demo-row" style="margin-top: 16px;">
+      <wt-badge variant="success" outline theme="dark">Outline</wt-badge>
+      <wt-badge variant="error" outline theme="dark">Outline</wt-badge>
+      <wt-badge count="42" theme="dark"></wt-badge>
+      <wt-badge count="99" variant="primary" size="sm" theme="dark"></wt-badge>
+    </div>
+  </main>
+
+  <script type="module">
+    import './src/index.ts';
+
+    // Get all theme-aware components
+    const themeToggle = document.getElementById('themeToggle');
+    const navbar = document.getElementById('navbar');
+    const nav = document.getElementById('nav');
+    const header = document.getElementById('header');
+    const statusFilter = document.getElementById('statusFilter');
+    const maturityFilter = document.getElementById('maturityFilter');
+    const content = document.getElementById('content');
+
+    // All components that need theme updates
+    const themedComponents = [navbar, nav, header, statusFilter, maturityFilter];
+
+    // Configure navbar
+    navbar.config = {
+      baseUrl: '',
+      brand: {
+        name: 'SiteNav',
+        logoUrl: 'https://plexusone.dev/icon.png',
+        href: '/',
+      },
+      megaMenu: {
+        label: 'Products',
+        categories: [
+          { id: 'libraries', label: 'Libraries', description: 'Core SDKs and packages', order: 1, href: '#libraries' },
+          { id: 'agents', label: 'Agents', description: 'AI agent frameworks', order: 2, href: '#agents' },
+          { id: 'apps', label: 'Applications', description: 'Ready-to-use apps', order: 3, href: '#apps' },
+          { id: 'specs', label: 'Specifications', description: 'Open standards', order: 4, href: '#specs' },
+        ],
+        items: [
+          { id: 'omnillm', label: 'OmniLLM', categoryId: 'libraries', tagline: 'Multi-provider LLM SDK', featured: true, href: '#omnillm' },
+          { id: 'agentkit', label: 'AgentKit', categoryId: 'agents', tagline: 'Agent framework', featured: true, href: '#agentkit' },
+          { id: 'site-nav', label: 'Site Nav', categoryId: 'libraries', tagline: 'Navigation components', featured: true, href: '#site-nav' },
+          { id: 'omniserp', label: 'OmniSERP', categoryId: 'libraries', tagline: 'Search API SDK', featured: true, href: '#omniserp' },
+        ],
+        footerLinks: [
+          { id: 'all', label: 'All Products', href: '#products' },
+          { id: 'integrations', label: 'Integrations', href: '#integrations' },
+          { id: 'github', label: 'GitHub', href: 'https://github.com/grokify', external: true },
+        ],
+      },
+      links: [
+        { id: 'projects', label: 'Projects', href: '#projects' },
+      ],
+      dropdowns: [
+        {
+          id: 'developers',
+          label: 'Developers',
+          items: [
+            { id: 'docs', label: 'Documentation', href: '#docs' },
+            { id: 'api', label: 'API Reference', href: '#api' },
+            { id: 'tools', label: 'Tools', href: '#tools' },
+          ],
+        },
+        {
+          id: 'community',
+          label: 'Community',
+          items: [
+            { id: 'blog', label: 'Blog', href: '#blog' },
+            { id: 'releases', label: 'Releases', href: '#releases' },
+          ],
+          extraItems: [
+            { id: 'rss', label: 'RSS Feed', href: '#rss', external: true },
+          ],
+        },
+      ],
+      actions: [
+        { id: 'github', label: 'GitHub', href: 'https://github.com/grokify', external: true },
+      ],
+    };
+
+    // Get all badges and other themed elements
+    function getAllThemedElements() {
+      return [
+        ...themedComponents,
+        ...document.querySelectorAll('wt-badge'),
+        ...document.querySelectorAll('wt-theme-toggle'),
+      ];
+    }
+
+    // Handle theme changes
+    themeToggle.addEventListener('wt-theme-change', (e) => {
+      console.log('Theme changed:', e.detail);
+      const { resolvedTheme } = e.detail;
+
+      // Update all themed components
+      getAllThemedElements().forEach(el => {
+        if (el) el.setAttribute('theme', resolvedTheme);
+      });
+    });
+
+    // Configure nav
+    nav.items = [
+      { id: 'overview', label: 'Overview' },
+      { id: 'stacks', label: 'Capability Stacks', count: 3 },
+      { id: 'capabilities', label: 'Capabilities', count: 47 },
+      { id: 'slis', label: 'SLI Metrics', count: 89 },
+      { id: 'okrs', label: 'OKRs', count: 12 },
+      { id: 'roadmap', label: 'Roadmap' },
+    ];
+
+    // Configure header actions
+    header.actions = [
+      { id: 'export', label: 'Export', variant: 'ghost' },
+      { id: 'edit', label: 'Edit', variant: 'primary' },
+    ];
+
+    // Configure status filter
+    statusFilter.options = [
+      { value: 'operational', label: 'Operational', color: '#10b981', checked: true },
+      { value: 'implemented', label: 'Implemented', color: '#3b82f6', checked: true },
+      { value: 'in-progress', label: 'In Progress', color: '#f59e0b', checked: true },
+      { value: 'planned', label: 'Planned', color: '#9ca3af', checked: true },
+      { value: 'deprecated', label: 'Deprecated', color: '#ef4444', checked: false },
+    ];
+
+    // Configure maturity filter
+    maturityFilter.options = [
+      { value: '1', label: 'M1', color: '#ef4444', checked: true },
+      { value: '2', label: 'M2', color: '#f59e0b', checked: true },
+      { value: '3', label: 'M3', color: '#eab308', checked: true },
+      { value: '4', label: 'M4', color: '#22c55e', checked: true },
+      { value: '5', label: 'M5', color: '#3b82f6', checked: true },
+    ];
+
+    // Event listeners
+    nav.addEventListener('wt-nav-change', (e) => {
+      console.log('Nav changed:', e.detail);
+      content.innerHTML = `<p>Active section: <strong>${e.detail.itemId}</strong></p>`;
+    });
+
+    header.addEventListener('wt-header-action', (e) => {
+      console.log('Header action:', e.detail);
+      alert(`Action clicked: ${e.detail.actionId}`);
+    });
+
+    statusFilter.addEventListener('wt-filter-change', (e) => {
+      console.log('Status filter changed:', e.detail);
+    });
+
+    maturityFilter.addEventListener('wt-filter-change', (e) => {
+      console.log('Maturity filter changed:', e.detail);
+    });
+  </script>
+</body>
+</html>
